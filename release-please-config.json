@@ -5,7 +5,7 @@
     ".": {
       "extra-files": [
         {
-          "jsonpath": "$.package[?(@.name.value=='pharia-inference-sdk')].version",
+          "jsonpath": "$.package[?(@.name.value=='pharia-studio-sdk')].version",
           "path": "uv.lock",
           "type": "toml"
         }
