@@ -52,6 +52,12 @@ dev = [
     "pandas-stubs>=2.2.3.250527",
     "scipy-stubs>=1.15.3.0",
     "types-openpyxl>=3.1.5.20250602",
+    "lxml-stubs>=0.5.1",
+    "types-pyyaml>=6.0.12.20250516",
+    "types-pywin32>=310.0.0.20250516",
+    "types-simplejson>=3.20.0.20250326",
+    "types-tabulate>=0.9.0.20241207",
+    "types-tensorflow>=2.18.0.20250516",
 ]
 
 [tool.uv]
