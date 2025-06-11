@@ -62,7 +62,7 @@ jobs:
       - name: Install dependencies
         run: uv sync --dev
       - name: Run tests
-        run: uv run pytest -n auto tests/
+        run: uv run pytest -n auto tests/ -m "not hugging_face"
         env:
           POSTGRES_DB: "il_sdk"
           POSTGRES_USER: "il_sdk"

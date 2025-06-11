@@ -1,10 +1,12 @@
 import huggingface_hub
+import pytest
 
 from pharia_studio_sdk.evaluation.infrastructure.hugging_face_repository import (
     HuggingFaceRepository,
 )
 
 
+@pytest.mark.hugging_face
 def test_hugging_face_repository_can_create_and_delete_a_repository(
     hugging_face_token: str, hugging_face_test_repository_id: str
 ) -> None:

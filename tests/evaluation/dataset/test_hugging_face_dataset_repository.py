@@ -125,6 +125,7 @@ def hugging_face_repository_with_dataset_and_examples(
         hugging_face_dataset_repository.delete_dataset(id)
 
 
+@pytest.mark.hugging_face
 def test_hugging_face_repository_supports_all_operations_for_created_dataset(
     hugging_face_repository_with_dataset_and_examples: tuple[
         HuggingFaceDatasetRepository, Dataset, Sequence[Example[str, str]]
