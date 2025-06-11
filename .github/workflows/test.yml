@@ -1,0 +1,77 @@
+name: Test & Lint
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@f0ec1fc3b38f5e7cd731bb6ce540c5af426746bb
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install dependencies
+        run: uv sync --dev
+      - name: Lint
+        run: uv run ruff check .
+      - name: Format
+        run: uv run ruff format --diff .
+      - name: Type check
+        run: uv run mypy --install-types --non-interactive .
+
+  test:
+    runs-on: ubuntu-latest
+    environment: test
+    services:
+      argilla-elastic-search:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+        env:
+          ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+          discovery.type: "single-node"
+          xpack.security.enabled: "false"
+      argilla:
+        image: argilla/argilla-server:v1.29.1
+        ports:
+          - "6900:6900"
+        env:
+          ARGILLA_ELASTICSEARCH: "http://argilla-elastic-search:9200"
+          ARGILLA_ENABLE_TELEMETRY: 0
+      postgres:
+        image: postgres:15
+        ports:
+          - "5433:5432"
+        env:
+          POSTGRES_DB: "il_sdk"
+          POSTGRES_USER: "il_sdk"
+          POSTGRES_PASSWORD: "test"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@f0ec1fc3b38f5e7cd731bb6ce540c5af426746bb
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install dependencies
+        run: uv sync --dev
+      - name: Run tests
+        run: uv run pytest -n auto tests/
+        env:
+          POSTGRES_DB: "il_sdk"
+          POSTGRES_USER: "il_sdk"
+          POSTGRES_PASSWORD: "test"
+          POSTGRES_HOST: "localhost"
+          POSTGRES_PORT: "5433"
+          ARGILLA_API_URL: "http://localhost:6900/"
+          ARGILLA_API_KEY: "argilla.apikey"
+          STUDIO_URL: "https://pharia-studio.product.pharia.com"
+          CLIENT_URL: "https://inference-api.product.pharia.com"
+          HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
+          AA_TOKEN: ${{ secrets.AA_TOKEN }}
