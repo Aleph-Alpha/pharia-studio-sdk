@@ -7,7 +7,7 @@ from typing import (
     Optional,
 )
 
-import argilla as rg  # type: ignore
+import argilla as rg
 
 from pharia_studio_sdk.connectors.argilla.argilla_client import (
     ArgillaClient,
