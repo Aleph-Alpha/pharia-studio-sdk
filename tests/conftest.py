@@ -1,32 +1,45 @@
+import os
 from collections.abc import Iterable, Sequence
 from os import getenv
 from pathlib import Path
 from unittest.mock import Mock
 from uuid import uuid4
 
+from aleph_alpha_client import Client
 from dotenv import load_dotenv
 from fsspec.implementations.memory import MemoryFileSystem  # type: ignore
+from pharia_inference_sdk.connectors import (
+    AlephAlphaClientProtocol,
+    LimitedConcurrencyClient,
+)
+from pharia_inference_sdk.core import Task, TaskSpan, Tracer, utc_now
 from pydantic import BaseModel
 from pytest import fixture
 
-from intelligence_layer.connectors.studio.studio import StudioClient
-from intelligence_layer.core import Task, TaskSpan, Tracer
-from intelligence_layer.evaluation import (
+from pharia_studio_sdk.connectors.studio.studio import StudioClient
+from pharia_studio_sdk.evaluation import (
+    AsyncInMemoryEvaluationRepository,
     DatasetRepository,
+    EvaluationOverview,
     Example,
     ExampleEvaluation,
     FileAggregationRepository,
     FileEvaluationRepository,
     FileRunRepository,
+    InMemoryAggregationRepository,
+    InMemoryDatasetRepository,
+    InMemoryEvaluationRepository,
+    InMemoryRunRepository,
+    RunOverview,
 )
-from intelligence_layer.evaluation.aggregation.aggregator import AggregationLogic
-from intelligence_layer.evaluation.benchmark.studio_benchmark import (
+from pharia_studio_sdk.evaluation.aggregation.aggregator import AggregationLogic
+from pharia_studio_sdk.evaluation.benchmark.studio_benchmark import (
     StudioBenchmarkRepository,
 )
-from intelligence_layer.evaluation.dataset.studio_dataset_repository import (
+from pharia_studio_sdk.evaluation.dataset.studio_dataset_repository import (
     StudioDatasetRepository,
 )
-from intelligence_layer.evaluation.evaluation.evaluator.evaluator import (
+from pharia_studio_sdk.evaluation.evaluation.evaluator.evaluator import (
     SingleOutputEvaluationLogic,
 )
 
@@ -169,9 +182,9 @@ def dummy_string_dataset_id(
 
 
 @fixture
-def sequence_examples() -> (
-    Iterable[Example[DummyStringInput, DummyStringExpectedOutput]]
-):
+def sequence_examples() -> Iterable[
+    Example[DummyStringInput, DummyStringExpectedOutput]
+]:
     return [
         Example(
             input=DummyStringInput(input="success"),
@@ -238,3 +251,87 @@ def hugging_face_token() -> str:
     token = getenv("HUGGING_FACE_TOKEN")
     assert isinstance(token, str)
     return token
+
+
+@fixture(scope="session")
+def token() -> str:
+    load_dotenv()
+    token = getenv("AA_TOKEN")
+    assert isinstance(token, str)
+    return token
+
+
+@fixture(scope="session")
+def inference_url() -> str:
+    return os.environ["CLIENT_URL"]
+
+
+@fixture(scope="session")
+def client(token: str, inference_url: str) -> AlephAlphaClientProtocol:
+    return LimitedConcurrencyClient(
+        Client(token, host=inference_url),
+        max_concurrency=10,
+        max_retry_time=10,
+    )
+
+
+@fixture
+def in_memory_dataset_repository() -> InMemoryDatasetRepository:
+    return InMemoryDatasetRepository()
+
+
+@fixture
+def in_memory_run_repository() -> InMemoryRunRepository:
+    return InMemoryRunRepository()
+
+
+@fixture
+def in_memory_evaluation_repository() -> InMemoryEvaluationRepository:
+    return InMemoryEvaluationRepository()
+
+
+@fixture
+def in_memory_aggregation_repository() -> InMemoryAggregationRepository:
+    return InMemoryAggregationRepository()
+
+
+@fixture()
+def async_in_memory_evaluation_repository() -> AsyncInMemoryEvaluationRepository:
+    return AsyncInMemoryEvaluationRepository()
+
+
+@fixture
+def run_overview() -> RunOverview:
+    return RunOverview(
+        dataset_id="dataset-id",
+        id="run-id-1",
+        start=utc_now(),
+        end=utc_now(),
+        failed_example_count=0,
+        successful_example_count=3,
+        description="test run overview 1",
+        labels=set(),
+        metadata=dict(),
+    )
+
+
+@fixture
+def evaluation_id() -> str:
+    return "evaluation-id-1"
+
+
+@fixture
+def evaluation_overview(
+    evaluation_id: str, run_overview: RunOverview
+) -> EvaluationOverview:
+    return EvaluationOverview(
+        id=evaluation_id,
+        start_date=utc_now(),
+        end_date=utc_now(),
+        successful_evaluation_count=1,
+        failed_evaluation_count=1,
+        run_overviews=frozenset([run_overview]),
+        description="test evaluation overview 1",
+        labels=set(),
+        metadata=dict(),
+    )
