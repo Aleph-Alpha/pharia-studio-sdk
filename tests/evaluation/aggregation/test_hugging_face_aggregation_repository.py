@@ -2,6 +2,7 @@ from collections.abc import Iterable
 from uuid import uuid4
 
 import huggingface_hub
+import pytest
 from _pytest.fixtures import fixture
 from pharia_inference_sdk.core import utc_now
 
@@ -54,6 +55,7 @@ def aggregation_overview(
     )
 
 
+@pytest.mark.hugging_face
 def test_repository_operations(
     hugging_face_aggregation_repository: HuggingFaceAggregationRepository,
     aggregation_overview: AggregationOverview[DummyAggregatedEvaluation],
