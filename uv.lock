@@ -834,7 +834,7 @@ wheels = [
 
 [[package]]
 name = "pharia-inference-sdk"
-version = "0.1.2"
+version = "0.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aleph-alpha-client" },
