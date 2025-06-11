@@ -825,8 +825,8 @@ wheels = [
 
 [[package]]
 name = "pharia-inference-sdk"
-version = "0.1.0"
-source = { path = "../pharia-inference-sdk/dist/pharia_inference_sdk-0.1.0-py3-none-any.whl" }
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aleph-alpha-client" },
     { name = "lingua-language-detector" },
@@ -839,22 +839,9 @@ dependencies = [
     { name = "rich" },
     { name = "semantic-text-splitter" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/04/b4/ffef7d6a0c9d145f771f319ee222a145b4a455e501e4fd2d9d028f1b8d93/pharia_inference_sdk-0.1.2.tar.gz", hash = "sha256:b9fc5fa4acffc76e50c525e12f3e0e51767afaa59608bcad74668378faddcd3f", size = 36140 }
 wheels = [
-    { filename = "pharia_inference_sdk-0.1.0-py3-none-any.whl", hash = "sha256:2e8c534b74bc3f352c6030cf5063afe0ce01acb0ab996626315670d9475e12e2" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aleph-alpha-client", specifier = ">=10.2.2,<11.0.0" },
-    { name = "lingua-language-detector", specifier = ">=2.0.0" },
-    { name = "opentelemetry-api", specifier = ">=1.29.0,<2" },
-    { name = "opentelemetry-exporter-otlp-proto-http", specifier = "==1.34.1" },
-    { name = "opentelemetry-sdk", specifier = ">=1.29.0,<2" },
-    { name = "pycountry", specifier = ">=24.6.1,<25" },
-    { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "python-liquid", specifier = "==1.9.4" },
-    { name = "rich", specifier = ">=14.0.0,<15" },
-    { name = "semantic-text-splitter", specifier = ">=0.5.0" },
+    { url = "https://files.pythonhosted.org/packages/17/2c/adcb58c3db4ac80ba31b596584d94adf88be4ca0f7da4fd650507f512f60/pharia_inference_sdk-0.1.2-py3-none-any.whl", hash = "sha256:3f58134d6d9be7b0e44383aec1b4a2d823de760109e90e2a2da2b98c9a982d42", size = 44308 },
 ]
 
 [[package]]
@@ -908,7 +895,7 @@ requires-dist = [
     { name = "datasets", specifier = ">=3.6.0" },
     { name = "dict-hash", specifier = ">=1.3.6" },
     { name = "huggingface-hub", specifier = ">=0.32.6" },
-    { name = "pharia-inference-sdk", path = "../pharia-inference-sdk/dist/pharia_inference_sdk-0.1.0-py3-none-any.whl" },
+    { name = "pharia-inference-sdk", specifier = ">=0.1.0" },
     { name = "pydantic", specifier = ">=2.11.5" },
     { name = "rouge-score", specifier = ">=0.1.2" },
     { name = "sacrebleu", specifier = ">=2.5.1" },

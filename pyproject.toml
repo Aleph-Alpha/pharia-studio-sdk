@@ -8,7 +8,7 @@ readme = "README.md"
 dependencies = [
     "pydantic>=2.11.5",
     "aleph-alpha-client>=10.2.2,<11.0.0",
-    "pharia_inference_sdk>=0.1.0",
+    "pharia-inference-sdk>=0.1.0",
     "dict-hash>=1.3.6",
     "huggingface-hub>=0.32.6",
     "datasets>=3.6.0",
@@ -22,9 +22,6 @@ name = "pharia-studio-sdk"
 url = "https://alephalpha.jfrog.io/artifactory/api/pypi/pharia-studio-sdk"
 publish-url = "https://alephalpha.jfrog.io/artifactory/api/pypi/pharia-studio-sdk"
 explicit = true
-
-[tool.uv.sources]
-pharia_inference_sdk = { path = "../pharia-inference-sdk/dist/pharia_inference_sdk-0.1.0-py3-none-any.whl" }
 
 [project.urls]
 repository = "https://github.com/Aleph-Alpha/pharia-studio-sdk.git"
@@ -136,7 +133,3 @@ known-first-party = ["intelligence_layer", "documentation"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-# TODO: remove this when `pharia-inference-sdk` is released on pypi
-[tool.hatch.metadata]
-allow-direct-references = true
