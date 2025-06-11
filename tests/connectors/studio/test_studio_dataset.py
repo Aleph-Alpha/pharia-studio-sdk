@@ -4,13 +4,12 @@ from uuid import UUID
 
 from pytest import fixture
 
-from intelligence_layer.connectors import StudioClient
-from intelligence_layer.connectors.studio.studio import StudioDataset
-from intelligence_layer.evaluation.dataset.domain import Example
-from intelligence_layer.evaluation.dataset.in_memory_dataset_repository import (
+from pharia_studio_sdk.connectors.studio.studio import StudioClient, StudioDataset
+from pharia_studio_sdk.evaluation.dataset.domain import Example
+from pharia_studio_sdk.evaluation.dataset.in_memory_dataset_repository import (
     InMemoryDatasetRepository,
 )
-from intelligence_layer.evaluation.dataset.studio_dataset_repository import (
+from pharia_studio_sdk.evaluation.dataset.studio_dataset_repository import (
     StudioDatasetRepository,
 )
 from tests.connectors.studio.conftest import PydanticType

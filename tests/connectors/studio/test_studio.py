@@ -6,11 +6,11 @@ from unittest.mock import patch
 from uuid import uuid4
 
 import pytest
+from pharia_inference_sdk.core import ExportedSpan, InMemoryTracer, Task, TaskSpan
 from pytest import fixture
 from requests import HTTPError
 
-from intelligence_layer.connectors import StudioClient
-from intelligence_layer.core import ExportedSpan, InMemoryTracer, Task, TaskSpan
+from pharia_studio_sdk.connectors.studio.studio import StudioClient
 
 
 class TracerTestSubTask(Task[None, None]):

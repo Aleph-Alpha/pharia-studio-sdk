@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 from pytest import fixture
 
-from intelligence_layer.connectors.studio.studio import StudioClient, StudioExample
+from pharia_studio_sdk.connectors.studio.studio import StudioClient, StudioExample
 
 
 @fixture

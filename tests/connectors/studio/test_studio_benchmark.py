@@ -4,11 +4,13 @@ from http import HTTPStatus
 from uuid import UUID, uuid4
 
 import pytest
+from pharia_inference_sdk.core.tracer.in_memory_tracer import InMemoryTracer
+from pharia_inference_sdk.core.tracer.tracer import ExportedSpan
 from pydantic import BaseModel
 from pytest import fixture
 from requests import HTTPError
 
-from intelligence_layer.connectors.studio.studio import (
+from pharia_studio_sdk.connectors.studio.studio import (
     AggregationLogicIdentifier,
     BenchmarkLineage,
     EvaluationLogicIdentifier,
@@ -18,15 +20,13 @@ from intelligence_layer.connectors.studio.studio import (
     StudioDataset,
     StudioExample,
 )
-from intelligence_layer.core.tracer.in_memory_tracer import InMemoryTracer
-from intelligence_layer.core.tracer.tracer import ExportedSpan
-from intelligence_layer.evaluation.aggregation.aggregator import AggregationLogic
-from intelligence_layer.evaluation.benchmark.studio_benchmark import (
+from pharia_studio_sdk.evaluation.aggregation.aggregator import AggregationLogic
+from pharia_studio_sdk.evaluation.benchmark.studio_benchmark import (
     create_aggregation_logic_identifier,
     create_evaluation_logic_identifier,
 )
-from intelligence_layer.evaluation.dataset.domain import Example
-from intelligence_layer.evaluation.evaluation.evaluator.evaluator import (
+from pharia_studio_sdk.evaluation.dataset.domain import Example
+from pharia_studio_sdk.evaluation.evaluation.evaluator.evaluator import (
     SingleOutputEvaluationLogic,
 )
 from tests.connectors.studio.test_studio import TracerTestTask
