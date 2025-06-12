@@ -58,4 +58,4 @@ benchmark.execute(
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to set up the development environment and submit changes.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/Aleph-Alpha/pharia-studio-sdk/blob/main/CONTRIBUTING.md) for details on how to set up the development environment and submit changes.
