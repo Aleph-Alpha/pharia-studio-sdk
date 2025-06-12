@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.3](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.2...v0.1.3) (2025-06-12)
+
+
+### Bug Fixes
+
+* Typing in Tests ([3b629fe](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/3b629fe7b944ec34459a410d491fabedf07f732f))
+
+
+### Documentation
+
+* fix readme typo ([7179948](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/717994855f1efa64cbfafc26dc200f7a7d0eedb4))
+
 ## [0.1.2](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.1...v0.1.2) (2025-06-11)
 
 
