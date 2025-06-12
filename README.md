@@ -1,6 +1,6 @@
 # pharia-studio-sdk
 
-Formally the `intelligence_layer/evaluation` package.
+Formerly the `intelligence_layer/evaluation` package.
 
 ## Overview
 
