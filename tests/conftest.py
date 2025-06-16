@@ -43,6 +43,8 @@ from pharia_studio_sdk.evaluation.evaluation.evaluator.evaluator import (
     SingleOutputEvaluationLogic,
 )
 
+load_dotenv()
+
 FAIL_IN_EVAL_INPUT = "fail in eval"
 FAIL_IN_TASK_INPUT = "fail in task"
 
@@ -95,7 +97,6 @@ class DummyAggregationLogic(AggregationLogic[DummyEvaluation, DummyAggregation])
 
 @fixture
 def studio_client() -> StudioClient:
-    load_dotenv()
     project_name = str(uuid4())
     client = StudioClient(project_name)
     client.create_project(project_name)
@@ -182,9 +183,9 @@ def dummy_string_dataset_id(
 
 
 @fixture
-def sequence_examples() -> Iterable[
-    Example[DummyStringInput, DummyStringExpectedOutput]
-]:
+def sequence_examples() -> (
+    Iterable[Example[DummyStringInput, DummyStringExpectedOutput]]
+):
     return [
         Example(
             input=DummyStringInput(input="success"),
@@ -247,7 +248,6 @@ def hugging_face_test_repository_id() -> str:
 
 @fixture(scope="session")
 def hugging_face_token() -> str:
-    load_dotenv()
     token = getenv("HUGGING_FACE_TOKEN")
     assert isinstance(token, str)
     return token
@@ -255,7 +255,6 @@ def hugging_face_token() -> str:
 
 @fixture(scope="session")
 def token() -> str:
-    load_dotenv()
     token = getenv("AA_TOKEN")
     assert isinstance(token, str)
     return token
