@@ -28,7 +28,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    environment: test
+    environment:
+      name: test
     services:
       argilla-elastic-search:
         image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
