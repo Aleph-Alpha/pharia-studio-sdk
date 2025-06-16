@@ -183,9 +183,9 @@ def dummy_string_dataset_id(
 
 
 @fixture
-def sequence_examples() -> (
-    Iterable[Example[DummyStringInput, DummyStringExpectedOutput]]
-):
+def sequence_examples() -> Iterable[
+    Example[DummyStringInput, DummyStringExpectedOutput]
+]:
     return [
         Example(
             input=DummyStringInput(input="success"),
