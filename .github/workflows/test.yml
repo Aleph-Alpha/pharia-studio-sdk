@@ -76,3 +76,42 @@ jobs:
           CLIENT_URL: "https://inference-api.product.pharia.com"
           HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
           AA_TOKEN: ${{ secrets.AA_TOKEN }}
+  run-notebooks:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    services:
+      argilla-elastic-search:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+        env:
+          ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+          discovery.type: "single-node"
+          xpack.security.enabled: "false"
+      argilla:
+        image: argilla/argilla-server:v1.29.1
+        ports:
+          - "6900:6900"
+        env:
+          ARGILLA_ELASTICSEARCH: "http://argilla-elastic-search:9200"
+          ARGILLA_ENABLE_TELEMETRY: 0
+      postgres:
+        image: postgres:15
+        ports:
+          - "5433:5432"
+        env:
+          POSTGRES_DB: "il_sdk"
+          POSTGRES_USER: "il_sdk"
+          POSTGRES_PASSWORD: "test"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - uses: ./.github/composites/python-setup
+
+      - name: Run Notebooks
+        env:
+          AA_TOKEN: ${{ secrets.AA_TOKEN }}
+          ARGILLA_API_URL: "http://localhost:6900/"
+          ARGILLA_API_KEY: "argilla.apikey"
+          CLIENT_URL: ${{ secrets.CLIENT_URL }}
+          STUDIO_URL: "https://pharia-studio.product.pharia.com"
+        run: |
+          ./scripts/notebook_runner.sh
