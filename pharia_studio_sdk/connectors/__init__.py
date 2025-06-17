@@ -4,6 +4,9 @@ from pharia_studio_sdk.connectors.argilla.argilla_client import (
     Record,
     RecordData,
 )
+from pharia_studio_sdk.connectors.argilla.argilla_wrapper_client import (
+    ArgillaWrapperClient,
+)
 from pharia_studio_sdk.connectors.base.json_serializable import (
     JsonSerializable,
     SerializableDict,
