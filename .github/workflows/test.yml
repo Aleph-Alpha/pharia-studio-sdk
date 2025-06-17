@@ -28,8 +28,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    environment:
-      name: test
+    environment: test
     services:
       argilla-elastic-search:
         image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
@@ -77,6 +76,7 @@ jobs:
           HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
           AA_TOKEN: ${{ secrets.AA_TOKEN }}
   notebooks:
+    environment: test
     timeout-minutes: 5
     runs-on: ubuntu-latest
     services:
