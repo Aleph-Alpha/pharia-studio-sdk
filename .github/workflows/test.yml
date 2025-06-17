@@ -43,14 +43,6 @@ jobs:
         env:
           ARGILLA_ELASTICSEARCH: "http://argilla-elastic-search:9200"
           ARGILLA_ENABLE_TELEMETRY: 0
-      postgres:
-        image: postgres:15
-        ports:
-          - "5433:5432"
-        env:
-          POSTGRES_DB: "il_sdk"
-          POSTGRES_USER: "il_sdk"
-          POSTGRES_PASSWORD: "test"
     steps:
       - uses: actions/checkout@v4
       - name: Install uv
@@ -93,14 +85,6 @@ jobs:
         env:
           ARGILLA_ELASTICSEARCH: "http://argilla-elastic-search:9200"
           ARGILLA_ENABLE_TELEMETRY: 0
-      postgres:
-        image: postgres:15
-        ports:
-          - "5433:5432"
-        env:
-          POSTGRES_DB: "il_sdk"
-          POSTGRES_USER: "il_sdk"
-          POSTGRES_PASSWORD: "test"
     steps:
       - uses: actions/checkout@v4
       - name: Install uv
