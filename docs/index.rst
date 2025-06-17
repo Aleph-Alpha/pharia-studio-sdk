@@ -12,7 +12,7 @@ A comprehensive overview of the Pharia Studio SDK can be found on `GitHub <https
 This code documentation is intended to serve as a reference companion to the main documentation, providing detailed information on the Pharia Studio SDK's API and implementation.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    pharia_studio_sdk.connectors
