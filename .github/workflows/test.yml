@@ -76,7 +76,7 @@ jobs:
           CLIENT_URL: "https://inference-api.product.pharia.com"
           HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
           AA_TOKEN: ${{ secrets.AA_TOKEN }}
-  run-notebooks:
+  notebooks:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     services:
@@ -102,9 +102,15 @@ jobs:
           POSTGRES_USER: "il_sdk"
           POSTGRES_PASSWORD: "test"
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - uses: ./.github/composites/python-setup
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@f0ec1fc3b38f5e7cd731bb6ce540c5af426746bb
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install dependencies
+        run: uv sync --dev
 
       - name: Run Notebooks
         env:
