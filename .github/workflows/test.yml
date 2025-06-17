@@ -117,7 +117,7 @@ jobs:
           AA_TOKEN: ${{ secrets.AA_TOKEN }}
           ARGILLA_API_URL: "http://localhost:6900/"
           ARGILLA_API_KEY: "argilla.apikey"
-          CLIENT_URL: ${{ secrets.CLIENT_URL }}
+          CLIENT_URL: "https://inference-api.product.pharia.com"
           STUDIO_URL: "https://pharia-studio.product.pharia.com"
         run: |
-          ./scripts/notebook_runner.sh
+          find documentation -name "*.ipynb" | xargs --max-args 1 --max-procs 6 uv run jupyter nbconvert --to notebook --execute
