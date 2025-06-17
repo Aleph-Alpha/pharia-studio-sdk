@@ -1,8 +1,8 @@
 from collections.abc import Iterable, Sequence
 
+from pharia_inference_sdk.core import Task, TaskSpan
 from pydantic import BaseModel
 
-from pharia_inference_sdk.core import Task, TaskSpan
 from pharia_studio_sdk.evaluation import (
     AggregationLogic,
     ComparisonEvaluation,
