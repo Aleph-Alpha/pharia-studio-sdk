@@ -22,14 +22,25 @@ Before running the example, make sure to set up the necessary configuration valu
 ```python
 from statistics import mean
 from typing import Iterable
+
 from aleph_alpha_client import Client
-from pharia_inference_sdk.core import Task, CompleteInput, Llama3InstructModel, ControlModel, TaskSpan
-from pharia_studio_sdk.connectors import StudioClient
-from pharia_studio_sdk.evaluation.aggregation.aggregator import AggregationLogic
-from pharia_studio_sdk.evaluation.evaluation.evaluator.evaluator import SingleOutputEvaluationLogic
-from pharia_studio_sdk.evaluation.benchmark.studio_benchmark import StudioBenchmarkRepository
-from pharia_studio_sdk.evaluation import StudioDatasetRepository, Example 
+from pharia_inference_sdk.core import (
+    CompleteInput,
+    ControlModel,
+    Llama3InstructModel,
+    Task,
+    TaskSpan,
+)
 from pydantic import BaseModel
+
+from pharia_studio_sdk import StudioClient
+from pharia_studio_sdk.evaluation import (
+    AggregationLogic,
+    Example,
+    SingleOutputEvaluationLogic,
+    StudioBenchmarkRepository,
+    StudioDatasetRepository,
+)
 
 # Studio Configuration
 PROJECT_NAME = "My first project"
