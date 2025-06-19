@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.4](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.3...v0.1.4) (2025-06-19)
+
+
+### Features
+
+* allow python version &gt;=3.10,&lt;3.13 ([6da133d](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/6da133d2c4a18fad0e1b84a53951684e6791d31e))
+* expose core classes on module root level ([eded34d](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/eded34d42a328721ff01669a4f16ecb3d0015793))
+
+
+### Documentation
+
+* add better usage example ([630dda2](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/630dda2f76da08b8f489781ed465102b4be62acf))
+
 ## [0.1.3](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.2...v0.1.3) (2025-06-12)
 
 
