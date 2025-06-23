@@ -21,6 +21,7 @@ Ready to start using the Pharia Studio SDK? Check out our [Quick Start Guide](01
 :maxdepth: 2
 
 01-quickstart
+02-core_concepts
 references
 ```
 
