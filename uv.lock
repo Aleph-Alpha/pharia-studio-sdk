@@ -1336,6 +1336,7 @@ dev = [
     { name = "scipy-stubs" },
     { name = "types-cffi" },
     { name = "types-colorama" },
+    { name = "types-decorator" },
     { name = "types-defusedxml" },
     { name = "types-openpyxl" },
     { name = "types-pexpect" },
@@ -1390,6 +1391,7 @@ dev = [
     { name = "scipy-stubs", specifier = ">=1.15.3.0" },
     { name = "types-cffi", specifier = ">=1.17.0.20250523" },
     { name = "types-colorama", specifier = ">=0.4.15.20240311" },
+    { name = "types-decorator", specifier = ">=5.1.8.20240310" },
     { name = "types-defusedxml", specifier = ">=0.7.0.20250516" },
     { name = "types-openpyxl", specifier = ">=3.1.5.20250602" },
     { name = "types-pexpect", specifier = ">=4.9.0.20250516" },
@@ -2357,6 +2359,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/59/73/0fb0b9fe4964b45b2a06ed41b60c352752626db46aa0fb70a49a9e283a75/types-colorama-0.4.15.20240311.tar.gz", hash = "sha256:a28e7f98d17d2b14fb9565d32388e419f4108f557a7d939a66319969b2b99c7a", size = 5608 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/83/6944b4fa01efb2e63ac62b791a8ddf0fee358f93be9f64b8f152648ad9d3/types_colorama-0.4.15.20240311-py3-none-any.whl", hash = "sha256:6391de60ddc0db3f147e31ecb230006a6823e81e380862ffca1e4695c13a0b8e", size = 5840 },
+]
+
+[[package]]
+name = "types-decorator"
+version = "5.2.0.20250324"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b4/61/afe7f9505058fc8d0c22deacb379eb299cd7319ee7459ab5c3ec2d435e93/types_decorator-5.2.0.20250324.tar.gz", hash = "sha256:8fbd72b0dadc56176e48e5187de744e76fe45bcc91a25874baa75662412155d3", size = 9063 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c4/02/49fff752b50ad681003f3adb9573d6a4a928fdaa786eefd8e1d87226c0d6/types_decorator-5.2.0.20250324-py3-none-any.whl", hash = "sha256:0740cee7ce57cf9cf2b306114a1588984255f706efa0f35b54b2cff290a110e2", size = 8175 },
 ]
 
 [[package]]

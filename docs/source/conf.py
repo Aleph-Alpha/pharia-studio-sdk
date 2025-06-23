@@ -85,7 +85,7 @@ html_css_files = [
 ]
 
 
-def skip_autodoc_attributes(app, what, name, obj, skip, options):  # type: ignore[no-untyped-def]
+def skip_autodoc_attributes(app, what, name, obj, skip, options):
     """Skip class attributes in autodocs that are not functions.
 
     The default behavior with Google style in sphinx is to document each attribute twice.
@@ -108,5 +108,5 @@ def skip_autodoc_attributes(app, what, name, obj, skip, options):  # type: ignor
     return None
 
 
-def setup(app):  # type: ignore[no-untyped-def]
+def setup(app):
     app.connect("autodoc-skip-member", skip_autodoc_attributes)
