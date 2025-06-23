@@ -1,5 +1,4 @@
 from collections.abc import Iterable
-from typing import Optional
 
 from pharia_inference_sdk.core import Input
 
@@ -84,7 +83,7 @@ class StudioDatasetRepository(DatasetRepository):
         """
         raise NotImplementedError()
 
-    def dataset(self, dataset_id: str) -> Optional[Dataset]:
+    def dataset(self, dataset_id: str) -> Dataset | None:
         """Returns a dataset identified by the given dataset ID.
 
         Args:
@@ -117,7 +116,7 @@ class StudioDatasetRepository(DatasetRepository):
         example_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-    ) -> Optional[Example[Input, ExpectedOutput]]:
+    ) -> Example[Input, ExpectedOutput] | None:
         """Returns an :class:`Example` for the given dataset ID and example ID.
 
         Args:
@@ -136,7 +135,7 @@ class StudioDatasetRepository(DatasetRepository):
         dataset_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-        examples_to_skip: Optional[frozenset[str]] = None,
+        examples_to_skip: frozenset[str] | None = None,
     ) -> Iterable[Example[Input, ExpectedOutput]]:
         """Returns all :class:`Example`s for the given dataset ID sorted by their ID.
 

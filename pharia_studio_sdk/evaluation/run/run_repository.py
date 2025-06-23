@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Iterable, Sequence
 from multiprocessing import Lock as lock
 from multiprocessing.synchronize import Lock
-from typing import Optional, final
+from typing import final
 
 from pharia_inference_sdk.core import Output, Tracer
 from pydantic import BaseModel
@@ -52,7 +52,7 @@ class RunRepository(ABC):
         pass
 
     @abstractmethod
-    def finished_examples(self, tmp_hash: str) -> Optional[RecoveryData]:
+    def finished_examples(self, tmp_hash: str) -> RecoveryData | None:
         pass
 
     @final
@@ -71,7 +71,7 @@ class RunRepository(ABC):
             self._temp_store_finished_example(tmp_hash, example_id)
 
     @abstractmethod
-    def run_overview(self, run_id: str) -> Optional[RunOverview]:
+    def run_overview(self, run_id: str) -> RunOverview | None:
         """Returns a :class:`RunOverview` for the given ID.
 
         Args:
@@ -121,7 +121,7 @@ class RunRepository(ABC):
     @abstractmethod
     def example_output(
         self, run_id: str, example_id: str, output_type: type[Output]
-    ) -> Optional[ExampleOutput[Output] | ExampleOutput[FailedExampleRun]]:
+    ) -> ExampleOutput[Output] | ExampleOutput[FailedExampleRun] | None:
         """Returns :class:`ExampleOutput` for the given run ID and example ID.
 
         Args:
@@ -192,7 +192,7 @@ class RunRepository(ABC):
         return (r for r in results if isinstance(r.output, FailedExampleRun))  # type: ignore
 
     @abstractmethod
-    def example_tracer(self, run_id: str, example_id: str) -> Optional[Tracer]:
+    def example_tracer(self, run_id: str, example_id: str) -> Tracer | None:
         """Returns an :class:`Optional[Tracer]` for the given run ID and example ID.
 
         Args:

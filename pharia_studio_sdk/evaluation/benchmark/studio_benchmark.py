@@ -2,7 +2,7 @@ import itertools
 from collections.abc import Sequence
 from datetime import datetime, timezone
 from http import HTTPStatus
-from typing import Any, Optional
+from typing import Any
 
 import requests
 from pharia_inference_sdk.core import Input, Output
@@ -95,9 +95,9 @@ class StudioBenchmark(Benchmark):
         self,
         task: Task[Input, Output],
         name: str,
-        description: Optional[str] = None,
-        labels: Optional[set[str]] = None,
-        metadata: Optional[dict[str, Any]] = None,
+        description: str | None = None,
+        labels: set[str] | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> str:
         start = datetime.now(timezone.utc)
 
@@ -277,8 +277,8 @@ class StudioBenchmarkRepository(BenchmarkRepository):
         eval_logic: EvaluationLogic[Input, Output, ExpectedOutput, Evaluation],
         aggregation_logic: AggregationLogic[Evaluation, AggregatedEvaluation],
         name: str,
-        metadata: Optional[dict[str, Any]] = None,
-        description: Optional[str] = None,
+        metadata: dict[str, Any] | None = None,
+        description: str | None = None,
     ) -> StudioBenchmark:
         try:
             benchmark_id = self.client.submit_benchmark(

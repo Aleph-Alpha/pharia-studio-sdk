@@ -3,7 +3,6 @@ from collections.abc import Callable, Iterable, Iterator, Mapping
 from functools import cached_property
 from typing import (
     Generic,
-    Optional,
     TypeVar,
     cast,
     final,
@@ -202,7 +201,7 @@ class Aggregator(Generic[Evaluation, AggregatedEvaluation]):
     def aggregate_evaluation(
         self,
         *eval_ids: str,
-        description: Optional[str] = None,
+        description: str | None = None,
         labels: set[str] | None = None,
         metadata: SerializableDict | None = None,
     ) -> AggregationOverview[AggregatedEvaluation]:

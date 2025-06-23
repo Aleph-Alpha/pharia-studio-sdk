@@ -1,4 +1,4 @@
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 from uuid import uuid4
 
 from pharia_inference_sdk.core.task import Input
@@ -34,7 +34,7 @@ class Example(BaseModel, Generic[Input, ExpectedOutput]):
     input: Input
     expected_output: ExpectedOutput
     id: str = Field(default_factory=lambda: str(uuid4()))
-    metadata: Optional[SerializableDict] = None
+    metadata: SerializableDict | None = None
 
     def __repr__(self) -> str:
         return self.__str__()

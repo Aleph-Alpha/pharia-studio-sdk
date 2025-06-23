@@ -1,5 +1,5 @@
 from collections.abc import Iterable, Sequence
-from typing import Optional, cast
+from typing import cast
 
 from datasets import Dataset as HFDataset
 from datasets import DatasetDict, IterableDataset, IterableDatasetDict
@@ -71,7 +71,7 @@ class SingleHuggingfaceDatasetRepository(DatasetRepository):
         dataset_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-        examples_to_skip: Optional[frozenset[str]] = None,
+        examples_to_skip: frozenset[str] | None = None,
     ) -> Iterable[Example[Input, ExpectedOutput]]:
         examples_to_skip = examples_to_skip or frozenset()
         answers = "ABCD"

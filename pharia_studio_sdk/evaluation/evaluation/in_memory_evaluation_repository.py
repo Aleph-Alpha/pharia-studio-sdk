@@ -1,6 +1,5 @@
 from collections import defaultdict
 from collections.abc import Sequence
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -36,7 +35,7 @@ class InMemoryEvaluationRepository(EvaluationRepository):
         if overview.id not in self._example_evaluations:
             self._example_evaluations[overview.id] = []
 
-    def evaluation_overview(self, evaluation_id: str) -> Optional[EvaluationOverview]:
+    def evaluation_overview(self, evaluation_id: str) -> EvaluationOverview | None:
         return self._evaluation_overviews.get(evaluation_id, None)
 
     def evaluation_overview_ids(self) -> Sequence[str]:
@@ -65,9 +64,7 @@ class InMemoryEvaluationRepository(EvaluationRepository):
 
     def example_evaluation(
         self, evaluation_id: str, example_id: str, evaluation_type: type[Evaluation]
-    ) -> Optional[
-        ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation]
-    ]:
+    ) -> ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation] | None:
         results = self.example_evaluations(evaluation_id, evaluation_type)
         filtered = (result for result in results if result.example_id == example_id)
         return next(filtered, None)
@@ -109,7 +106,7 @@ class AsyncInMemoryEvaluationRepository(
 
     def partial_evaluation_overview(
         self, evaluation_id: str
-    ) -> Optional[PartialEvaluationOverview]:
+    ) -> PartialEvaluationOverview | None:
         return self._partial_evaluation_overviews.get(evaluation_id, None)
 
     def partial_evaluation_overview_ids(self) -> Sequence[str]:

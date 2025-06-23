@@ -2,7 +2,6 @@ from abc import abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from itertools import combinations
-from typing import Optional
 
 from pharia_inference_sdk.core import Input, Output
 from pydantic import BaseModel
@@ -123,11 +122,11 @@ class IncrementalEvaluator(Evaluator[Input, Output, ExpectedOutput, Evaluation])
     def evaluate_additional_runs(
         self,
         *run_ids: str,
-        previous_evaluation_ids: Optional[list[str]] = None,
-        num_examples: Optional[int] = None,
+        previous_evaluation_ids: list[str] | None = None,
+        num_examples: int | None = None,
         abort_on_error: bool = False,
-        labels: Optional[set[str]] = None,
-        metadata: Optional[SerializableDict] = None,
+        labels: set[str] | None = None,
+        metadata: SerializableDict | None = None,
     ) -> EvaluationOverview:
         """Evaluate all runs while considering which runs have already been evaluated according to `previous_evaluation_id`.
 
@@ -181,10 +180,10 @@ class IncrementalEvaluator(Evaluator[Input, Output, ExpectedOutput, Evaluation])
     def evaluate_runs(
         self,
         *run_ids: str,
-        num_examples: Optional[int] = None,
+        num_examples: int | None = None,
         abort_on_error: bool = False,
         skip_example_on_any_failure: bool = True,
-        description: Optional[str] = None,
+        description: str | None = None,
         labels: set[str] | None = None,
         metadata: SerializableDict | None = None,
     ) -> EvaluationOverview:

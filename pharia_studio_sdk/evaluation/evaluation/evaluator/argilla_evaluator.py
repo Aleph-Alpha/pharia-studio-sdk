@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Mapping, Sequence
 from datetime import datetime
 from itertools import combinations
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 from uuid import uuid4
 
 import argilla as rg
@@ -135,12 +135,12 @@ class ArgillaEvaluator(AsyncEvaluator[Input, Output, ExpectedOutput, Evaluation]
     def submit(
         self,
         *run_ids: str,
-        num_examples: Optional[int] = None,
-        dataset_name: Optional[str] = None,
+        num_examples: int | None = None,
+        dataset_name: str | None = None,
         abort_on_error: bool = False,
         skip_example_on_any_failure: bool = True,
-        labels: Optional[set[str]] = None,
-        metadata: Optional[SerializableDict] = None,
+        labels: set[str] | None = None,
+        metadata: SerializableDict | None = None,
     ) -> PartialEvaluationOverview:
         if metadata is None:
             metadata = dict()
@@ -255,7 +255,7 @@ class InstructComparisonArgillaEvaluationLogic(
 
     def __init__(
         self,
-        high_priority_runs: Optional[frozenset[str]] = None,
+        high_priority_runs: frozenset[str] | None = None,
     ) -> None:
         self._high_priority_runs = high_priority_runs
         super().__init__(

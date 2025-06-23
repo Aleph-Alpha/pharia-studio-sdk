@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
 
 from pharia_inference_sdk.core import Input, Output
 from pharia_inference_sdk.core.task import Task
@@ -46,9 +46,9 @@ class Benchmark(ABC):
         self,
         task: Task[Input, Output],
         name: str,
-        description: Optional[str],
-        labels: Optional[set[str]],
-        metadata: Optional[dict[str, Any]],
+        description: str | None,
+        labels: set[str] | None,
+        metadata: dict[str, Any] | None,
     ) -> str:
         """Executes the benchmark on a given task.
 
@@ -75,8 +75,8 @@ class BenchmarkRepository(ABC):
         eval_logic: EvaluationLogic[Input, Output, ExpectedOutput, Evaluation],
         aggregation_logic: AggregationLogic[Evaluation, AggregatedEvaluation],
         name: str,
-        metadata: Optional[dict[str, Any]] = None,
-        description: Optional[str] = None,
+        metadata: dict[str, Any] | None = None,
+        description: str | None = None,
     ) -> Benchmark:
         """Creates a new benchmark and stores it in the repository.
 

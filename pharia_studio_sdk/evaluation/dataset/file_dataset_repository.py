@@ -1,7 +1,6 @@
 import contextlib
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Optional
 
 from fsspec.implementations.local import LocalFileSystem  # type: ignore
 from pharia_inference_sdk.core import Input, JsonSerializer, PydanticSerializable
@@ -63,7 +62,7 @@ class FileSystemDatasetRepository(DatasetRepository, FileSystemBasedRepository):
                 self.path_to_str(self._dataset_directory(dataset_id)), recursive=True
             )
 
-    def dataset(self, dataset_id: str) -> Optional[Dataset]:
+    def dataset(self, dataset_id: str) -> Dataset | None:
         file_path = self.path_to_str(self._dataset_path(dataset_id))
         if not self._file_system.exists(file_path):
             return None
@@ -89,7 +88,7 @@ class FileSystemDatasetRepository(DatasetRepository, FileSystemBasedRepository):
         example_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-    ) -> Optional[Example[Input, ExpectedOutput]]:
+    ) -> Example[Input, ExpectedOutput] | None:
         example_path = self._dataset_examples_path(dataset_id)
         if not self.exists(example_path.parent):
             raise ValueError(
@@ -107,7 +106,7 @@ class FileSystemDatasetRepository(DatasetRepository, FileSystemBasedRepository):
         dataset_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-        examples_to_skip: Optional[frozenset[str]] = None,
+        examples_to_skip: frozenset[str] | None = None,
     ) -> Iterable[Example[Input, ExpectedOutput]]:
         examples_to_skip = examples_to_skip or frozenset()
         example_path = self.path_to_str(self._dataset_examples_path(dataset_id))

@@ -1,5 +1,5 @@
 from collections.abc import Iterable, Sequence
-from typing import Any, Optional, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from pharia_inference_sdk.core import Input, PydanticSerializable
 from pydantic import TypeAdapter
@@ -60,7 +60,7 @@ class InMemoryDatasetRepository(DatasetRepository):
     def delete_dataset(self, dataset_id: str) -> None:
         self._datasets_and_examples.pop(dataset_id, None)
 
-    def dataset(self, dataset_id: str) -> Optional[Dataset]:
+    def dataset(self, dataset_id: str) -> Dataset | None:
         if dataset_id in self._datasets_and_examples:
             return self._datasets_and_examples[dataset_id][0]
         return None
@@ -83,7 +83,7 @@ class InMemoryDatasetRepository(DatasetRepository):
         example_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-    ) -> Optional[Example[Input, ExpectedOutput]]:
+    ) -> Example[Input, ExpectedOutput] | None:
         examples = self.examples(dataset_id, input_type, expected_output_type)
         filtered = (e for e in examples if e.id == example_id)
         return next(filtered, None)
@@ -93,7 +93,7 @@ class InMemoryDatasetRepository(DatasetRepository):
         dataset_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-        examples_to_skip: Optional[frozenset[str]] = None,
+        examples_to_skip: frozenset[str] | None = None,
     ) -> Iterable[Example[Input, ExpectedOutput]]:
         examples_to_skip = examples_to_skip or frozenset()
         if dataset_id not in self._datasets_and_examples:

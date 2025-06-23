@@ -1,5 +1,4 @@
 from functools import _lru_cache_wrapper, lru_cache
-from typing import Optional
 
 from pharia_studio_sdk.evaluation.dataset.domain import Dataset
 from pharia_studio_sdk.evaluation.dataset.file_dataset_repository import (
@@ -50,7 +49,7 @@ class HuggingFaceDatasetRepository(HuggingFaceRepository, FileSystemDatasetRepos
         if isinstance(self.examples, _lru_cache_wrapper):
             self.examples.cache_clear()
 
-    def dataset(self, dataset_id: str) -> Optional[Dataset]:
+    def dataset(self, dataset_id: str) -> Dataset | None:
         """Returns a dataset identified by the given dataset ID.
 
         This implementation should be backwards compatible to datasets

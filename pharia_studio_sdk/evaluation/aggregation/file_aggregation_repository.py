@@ -1,6 +1,5 @@
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Optional
 
 from fsspec.implementations.local import LocalFileSystem  # type: ignore
 
@@ -30,7 +29,7 @@ class FileSystemAggregationRepository(AggregationRepository, FileSystemBasedRepo
 
     def aggregation_overview(
         self, aggregation_id: str, aggregation_type: type[AggregatedEvaluation]
-    ) -> Optional[AggregationOverview[AggregatedEvaluation]]:
+    ) -> AggregationOverview[AggregatedEvaluation] | None:
         file_path = self._aggregation_overview_path(aggregation_id)
 
         if not self.exists(file_path):

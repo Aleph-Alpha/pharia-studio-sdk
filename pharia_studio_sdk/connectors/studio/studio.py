@@ -4,7 +4,7 @@ import os
 from collections import defaultdict, deque
 from collections.abc import Iterable, Sequence
 from datetime import datetime
-from typing import Any, Generic, Optional, TypeVar
+from typing import Any, Generic, TypeVar
 from urllib.parse import urljoin
 from uuid import UUID, uuid4
 
@@ -31,7 +31,7 @@ Evaluation = TypeVar("Evaluation", bound=BaseModel, covariant=True)
 
 class StudioProject(BaseModel):
     name: str
-    description: Optional[str]
+    description: str | None
 
 
 class StudioExample(BaseModel, Generic[Input, ExpectedOutput]):
@@ -52,7 +52,7 @@ class StudioExample(BaseModel, Generic[Input, ExpectedOutput]):
     input: Input
     expected_output: ExpectedOutput
     id: str = Field(default_factory=lambda: str(uuid4()))
-    metadata: Optional[SerializableDict] = None
+    metadata: SerializableDict | None = None
 
 
 class StudioDataset(BaseModel):
@@ -88,8 +88,8 @@ class AggregationLogicIdentifier(BaseModel):
 class PostBenchmarkRequest(BaseModel):
     dataset_id: str
     name: str
-    description: Optional[str]
-    benchmark_metadata: Optional[dict[str, Any]]
+    description: str | None
+    benchmark_metadata: dict[str, Any] | None
     evaluation_logic: EvaluationLogicIdentifier
     aggregation_logic: AggregationLogicIdentifier
 
@@ -118,9 +118,9 @@ class GetBenchmarkResponse(BaseModel):
 
 class PostBenchmarkExecution(BaseModel):
     name: str
-    description: Optional[str]
-    labels: Optional[set[str]]
-    metadata: Optional[dict[str, Any]]
+    description: str | None
+    labels: set[str] | None
+    metadata: dict[str, Any] | None
     start: datetime
     end: datetime
     # Run Overview
@@ -154,7 +154,7 @@ class BenchmarkLineage(BaseModel, Generic[Input, ExpectedOutput, Output, Evaluat
     input: Input
     expected_output: ExpectedOutput
     output: Output
-    example_metadata: Optional[dict[str, Any]] = None
+    example_metadata: dict[str, Any] | None = None
     evaluation: Any
     run_latency: int
     run_tokens: int
@@ -174,7 +174,7 @@ class GetBenchmarkLineageResponse(BaseModel):
     benchmark_execution_id: str
     input: JsonSerializable
     expected_output: JsonSerializable
-    example_metadata: Optional[dict[str, JsonSerializable]] = None
+    example_metadata: dict[str, JsonSerializable] | None = None
     output: JsonSerializable
     evaluation: JsonSerializable
     run_latency: int
@@ -190,7 +190,7 @@ class StudioClient:
     """
 
     @staticmethod
-    def get_headers(auth_token: Optional[str] = None) -> dict[str, str]:
+    def get_headers(auth_token: str | None = None) -> dict[str, str]:
         _token = auth_token if auth_token is not None else os.getenv("AA_TOKEN")
         if _token is None:
             raise ValueError(
@@ -202,7 +202,7 @@ class StudioClient:
         }
 
     @staticmethod
-    def get_url(studio_url: Optional[str] = None) -> str:
+    def get_url(studio_url: str | None = None) -> str:
         temp_url = studio_url if studio_url is not None else os.getenv("STUDIO_URL")
         if temp_url is None:
             raise ValueError(
@@ -213,8 +213,8 @@ class StudioClient:
     def __init__(
         self,
         project: str,
-        studio_url: Optional[str] = None,
-        auth_token: Optional[str] = None,
+        studio_url: str | None = None,
+        auth_token: str | None = None,
         create_project: bool = False,
     ) -> None:
         """Initializes the client.
@@ -300,7 +300,7 @@ class StudioClient:
     def create_project(
         self,
         project: str,
-        description: Optional[str] = None,
+        description: str | None = None,
         reuse_existing: bool = False,
     ) -> str:
         """Creates a project in Studio.
@@ -477,8 +477,8 @@ class StudioClient:
         eval_logic: EvaluationLogicIdentifier,
         aggregation_logic: AggregationLogicIdentifier,
         name: str,
-        description: Optional[str] = None,
-        metadata: Optional[dict[str, Any]] = None,
+        description: str | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> str:
         benchmark = PostBenchmarkRequest(
             dataset_id=dataset_id,

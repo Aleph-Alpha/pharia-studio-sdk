@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional, cast
+from typing import cast
 from unittest.mock import Mock, patch
 from uuid import UUID, uuid4
 
@@ -86,7 +86,7 @@ def test_type_to_schema() -> None:
     assert type_to_schema(bool) == {"type": "boolean"}
     assert type_to_schema(float) == {"type": "number"}
     assert type_to_schema(None) == {"type": "null"}  # type: ignore
-    assert type_to_schema(Optional[int]) == {  # type: ignore
+    assert type_to_schema(int | None) == {  # type: ignore
         "anyOf": [{"type": "integer"}, {"type": "null"}]
     }
     assert type_to_schema(list[int]) == {"type": "array", "items": {"type": "integer"}}

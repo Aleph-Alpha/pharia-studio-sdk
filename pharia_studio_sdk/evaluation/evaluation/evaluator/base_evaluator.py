@@ -3,7 +3,6 @@ from collections.abc import Iterable, Mapping, Sequence
 from functools import cached_property
 from typing import (
     Generic,
-    Optional,
     TypeVar,
     cast,
     get_args,
@@ -266,7 +265,7 @@ class EvaluatorBase(Generic[Input, Output, ExpectedOutput, Evaluation], ABC):
         examples: Iterable[Example[Input, ExpectedOutput]],
         example_outputs_for_example: Iterable[tuple[ExampleOutput[Output], ...]],
         skip_example_on_any_failure: bool,
-        num_examples: Optional[int],
+        num_examples: int | None,
     ) -> Iterable[
         tuple[
             Example[Input, ExpectedOutput],
@@ -311,7 +310,7 @@ class EvaluatorBase(Generic[Input, Output, ExpectedOutput, Evaluation], ABC):
         self,
         run_overviews: set[RunOverview],
         skip_example_on_any_failure: bool,
-        num_examples: Optional[int] = None,
+        num_examples: int | None = None,
     ) -> Iterable[
         tuple[
             Example[Input, ExpectedOutput],

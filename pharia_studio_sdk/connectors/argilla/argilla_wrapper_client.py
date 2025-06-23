@@ -4,7 +4,6 @@ import os
 from collections.abc import Iterable, Sequence
 from typing import (
     Any,
-    Optional,
 )
 
 import argilla as rg
@@ -20,8 +19,8 @@ from pharia_studio_sdk.connectors.argilla.argilla_client import (
 class ArgillaWrapperClient(ArgillaClient):
     def __init__(
         self,
-        api_url: Optional[str] = None,
-        api_key: Optional[str] = None,
+        api_url: str | None = None,
+        api_key: str | None = None,
         disable_warnings: bool = True,
     ) -> None:
         if disable_warnings:

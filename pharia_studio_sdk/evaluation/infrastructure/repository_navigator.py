@@ -1,6 +1,6 @@
 import itertools
 from collections.abc import Iterable, Sequence
-from typing import Generic, Optional
+from typing import Generic
 
 import pandas as pd
 import rich
@@ -30,13 +30,13 @@ EXAMPLE_OUTPUT_TYPE = ExampleOutput[Output] | ExampleOutput[FailedExampleRun]
 class RunLineage(Generic[Input, ExpectedOutput, Output]):
     example: Example[Input, ExpectedOutput]
     output: EXAMPLE_OUTPUT_TYPE
-    tracer: Optional[Tracer]
+    tracer: Tracer | None
 
     def __init__(
         self,
         example: Example[Input, ExpectedOutput],
         output: EXAMPLE_OUTPUT_TYPE,
-        tracer: Optional[Tracer] = None,
+        tracer: Tracer | None = None,
     ) -> None:
         self.example = example
         self.output = output
@@ -86,14 +86,14 @@ class EvaluationLineage(Generic[Input, ExpectedOutput, Output, Evaluation]):
     example: Example[Input, ExpectedOutput]
     outputs: Sequence[EXAMPLE_OUTPUT_TYPE]
     evaluation: EXAMPLE_EVAL_TYPE
-    tracers: Sequence[Optional[Tracer]]
+    tracers: Sequence[Tracer | None]
 
     def __init__(
         self,
         example: Example[Input, ExpectedOutput],
         outputs: Sequence[EXAMPLE_OUTPUT_TYPE],
         evaluation: EXAMPLE_EVAL_TYPE,
-        tracers: Sequence[Optional[Tracer]],
+        tracers: Sequence[Tracer | None],
     ) -> None:
         self.example = example
         self.outputs = outputs
