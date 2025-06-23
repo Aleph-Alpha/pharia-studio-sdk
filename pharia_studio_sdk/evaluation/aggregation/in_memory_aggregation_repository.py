@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import Any, Optional
+from typing import Any
 
 from pharia_studio_sdk.evaluation.aggregation.aggregation_repository import (
     AggregationRepository,
@@ -22,7 +22,7 @@ class InMemoryAggregationRepository(AggregationRepository):
 
     def aggregation_overview(
         self, aggregation_id: str, aggregation_type: type[AggregatedEvaluation]
-    ) -> Optional[AggregationOverview[AggregatedEvaluation]]:
+    ) -> AggregationOverview[AggregatedEvaluation] | None:
         overview = self._aggregation_overviews.get(aggregation_id, None)
         if overview is None or type(overview.statistics) is aggregation_type:
             return overview

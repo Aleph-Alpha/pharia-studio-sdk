@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from collections.abc import Iterable, Sequence
-from typing import Optional
 from uuid import uuid4
 
 from pharia_inference_sdk.core import JsonSerializer
@@ -86,7 +85,7 @@ class EvaluationRepository(ABC):
         ...
 
     @abstractmethod
-    def evaluation_overview(self, evaluation_id: str) -> Optional[EvaluationOverview]:
+    def evaluation_overview(self, evaluation_id: str) -> EvaluationOverview | None:
         """Returns an :class:`EvaluationOverview` for the given ID.
 
         Args:
@@ -130,9 +129,11 @@ class EvaluationRepository(ABC):
     @abstractmethod
     def example_evaluation(
         self, evaluation_id: str, example_id: str, evaluation_type: type[Evaluation]
-    ) -> Optional[
-        ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation]
-    ]:
+    ) -> (
+        ExampleEvaluation[Evaluation]
+        | ExampleEvaluation[FailedExampleEvaluation]
+        | None
+    ):
         """Returns an :class:`ExampleEvaluation` for the given evaluation overview ID and example ID.
 
         Args:

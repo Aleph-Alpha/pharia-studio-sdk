@@ -2,7 +2,7 @@ from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from inspect import get_annotations
 from itertools import islice
-from typing import Any, Generic, Optional, cast
+from typing import Any, Generic, cast
 from uuid import uuid4
 
 from dict_hash import dict_hash
@@ -81,14 +81,14 @@ class Runner(Generic[Input, Output]):
     def run_dataset(
         self,
         dataset_id: str,
-        tracer: Optional[Tracer] = None,
-        num_examples: Optional[int] = None,
+        tracer: Tracer | None = None,
+        num_examples: int | None = None,
         abort_on_error: bool = False,
         max_workers: int = 10,
-        description: Optional[str] = None,
+        description: str | None = None,
         trace_examples_individually: bool = True,
-        labels: Optional[set[str]] = None,
-        metadata: Optional[SerializableDict] = None,
+        labels: set[str] | None = None,
+        metadata: SerializableDict | None = None,
         resume_from_recovery_data: bool = False,
     ) -> RunOverview:
         """Generates all outputs for the provided dataset.

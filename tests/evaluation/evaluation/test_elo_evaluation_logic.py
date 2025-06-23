@@ -1,5 +1,4 @@
 from collections.abc import Sequence
-from typing import Optional
 
 from dotenv import load_dotenv
 from pharia_inference_sdk.connectors import AlephAlphaClientProtocol
@@ -59,7 +58,7 @@ class SingleChunkQaOutput(BaseModel):
             Each highlight is a quote from the text.
     """
 
-    answer: Optional[str]
+    answer: str | None
     highlights: Sequence[ScoredTextHighlight]
 
 

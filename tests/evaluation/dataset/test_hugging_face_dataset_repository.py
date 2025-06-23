@@ -1,6 +1,5 @@
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Optional
 from unittest.mock import patch
 from uuid import uuid4
 
@@ -26,7 +25,7 @@ class HuggingFaceDatasetRepositoryTestWrapper(HuggingFaceDatasetRepository):
         dataset_id: str,
         input_type: type[Input],
         expected_output_type: type[ExpectedOutput],
-        examples_to_skip: Optional[frozenset[str]] = None,
+        examples_to_skip: frozenset[str] | None = None,
     ) -> Iterable[Example[Input, ExpectedOutput]]:
         self.counter += 1
         return super().examples(

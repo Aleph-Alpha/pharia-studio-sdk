@@ -1,7 +1,6 @@
 import warnings
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Optional
 
 from fsspec import AbstractFileSystem  # type: ignore
 from fsspec.implementations.local import LocalFileSystem  # type: ignore
@@ -59,7 +58,7 @@ class FileSystemRunRepository(RunRepository, FileSystemBasedRepository):
             create_parents=True,
         )
 
-    def finished_examples(self, tmp_hash: str) -> Optional[RecoveryData]:
+    def finished_examples(self, tmp_hash: str) -> RecoveryData | None:
         try:
             return RecoveryData.model_validate_json(
                 self.read_utf8(self._tmp_file_path(tmp_hash))
@@ -67,7 +66,7 @@ class FileSystemRunRepository(RunRepository, FileSystemBasedRepository):
         except FileNotFoundError:
             return None
 
-    def run_overview(self, run_id: str) -> Optional[RunOverview]:
+    def run_overview(self, run_id: str) -> RunOverview | None:
         file_path = self._run_overview_path(run_id)
         if not self.exists(file_path):
             return None
@@ -88,7 +87,7 @@ class FileSystemRunRepository(RunRepository, FileSystemBasedRepository):
 
     def example_output(
         self, run_id: str, example_id: str, output_type: type[Output]
-    ) -> Optional[ExampleOutput[Output] | ExampleOutput[FailedExampleRun]]:
+    ) -> ExampleOutput[Output] | ExampleOutput[FailedExampleRun] | None:
         file_path = self._example_output_path(run_id, example_id)
         if not self.exists(file_path):
             warnings.warn(
@@ -140,7 +139,7 @@ class FileSystemRunRepository(RunRepository, FileSystemBasedRepository):
     def _run_overview_path(self, run_id: str) -> Path:
         return self._run_directory(run_id).with_suffix(".json")
 
-    def example_tracer(self, run_id: str, example_id: str) -> Optional[Tracer]:
+    def example_tracer(self, run_id: str, example_id: str) -> Tracer | None:
         file_path = self._example_trace_path(run_id, example_id)
         if not self.exists(file_path):
             return None

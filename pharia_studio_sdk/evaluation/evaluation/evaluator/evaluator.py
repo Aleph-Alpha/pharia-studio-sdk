@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
-from typing import Optional, final
+from typing import final
 
 from pharia_inference_sdk.core import Input, Output, utc_now
 from tqdm import tqdm
@@ -98,12 +98,12 @@ class Evaluator(EvaluatorBase[Input, Output, ExpectedOutput, Evaluation]):
     def evaluate_runs(
         self,
         *run_ids: str,
-        num_examples: Optional[int] = None,
+        num_examples: int | None = None,
         abort_on_error: bool = False,
         skip_example_on_any_failure: bool = True,
-        description: Optional[str] = None,
-        labels: Optional[set[str]] = None,
-        metadata: Optional[SerializableDict] = None,
+        description: str | None = None,
+        labels: set[str] | None = None,
+        metadata: SerializableDict | None = None,
     ) -> EvaluationOverview:
         """Evaluates all generated outputs in the run.
 

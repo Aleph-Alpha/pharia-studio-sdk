@@ -1,6 +1,5 @@
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Optional
 
 from fsspec.implementations.local import LocalFileSystem  # type: ignore
 
@@ -36,7 +35,7 @@ class FileSystemEvaluationRepository(EvaluationRepository, FileSystemBasedReposi
         # if we did not store any examples in it
         self.mkdir(self._eval_directory(overview.id))
 
-    def evaluation_overview(self, evaluation_id: str) -> Optional[EvaluationOverview]:
+    def evaluation_overview(self, evaluation_id: str) -> EvaluationOverview | None:
         file_path = self._evaluation_overview_path(evaluation_id)
         if not self.exists(file_path):
             return None
@@ -63,9 +62,11 @@ class FileSystemEvaluationRepository(EvaluationRepository, FileSystemBasedReposi
 
     def example_evaluation(
         self, evaluation_id: str, example_id: str, evaluation_type: type[Evaluation]
-    ) -> Optional[
-        ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation]
-    ]:
+    ) -> (
+        ExampleEvaluation[Evaluation]
+        | ExampleEvaluation[FailedExampleEvaluation]
+        | None
+    ):
         file_path = self._example_result_path(evaluation_id, example_id)
         if not self.exists(file_path.parent):
             raise ValueError(
@@ -144,7 +145,7 @@ class AsyncFileEvaluationRepository(
 
     def partial_evaluation_overview(
         self, evaluation_id: str
-    ) -> Optional[PartialEvaluationOverview]:
+    ) -> PartialEvaluationOverview | None:
         file_path = self._partial_evaluation_overview_path(evaluation_id)
         if not self.exists(file_path):
             return None

@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from collections.abc import Iterable, Sequence
-from typing import Optional
 
 from pharia_inference_sdk.core.task import Input, Output
 
@@ -23,7 +22,7 @@ class AsyncEvaluator(EvaluatorBase[Input, Output, ExpectedOutput, Evaluation], A
     def submit(
         self,
         *run_ids: str,
-        num_examples: Optional[int] = None,
+        num_examples: int | None = None,
         abort_on_error: bool = False,
     ) -> PartialEvaluationOverview:
         """Submits evaluations to external service to be evaluated.
@@ -78,7 +77,7 @@ class AsyncEvaluationRepository(EvaluationRepository):
     @abstractmethod
     def partial_evaluation_overview(
         self, partial_evaluation_id: str
-    ) -> Optional[PartialEvaluationOverview]:
+    ) -> PartialEvaluationOverview | None:
         """Returns an :class:`PartialEvaluationOverview` for the given ID.
 
         Args:

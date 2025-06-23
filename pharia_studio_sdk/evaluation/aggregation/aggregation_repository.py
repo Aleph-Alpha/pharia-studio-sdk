@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from collections.abc import Iterable, Sequence
-from typing import Optional
 
 from pharia_studio_sdk.evaluation.aggregation.domain import (
     AggregatedEvaluation,
@@ -28,7 +27,7 @@ class AggregationRepository(ABC):
     @abstractmethod
     def aggregation_overview(
         self, aggregation_id: str, aggregation_type: type[AggregatedEvaluation]
-    ) -> Optional[AggregationOverview[AggregatedEvaluation]]:
+    ) -> AggregationOverview[AggregatedEvaluation] | None:
         """Returns an :class:`AggregationOverview` for the given ID.
 
         Args:
