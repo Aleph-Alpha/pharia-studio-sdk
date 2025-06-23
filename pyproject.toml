@@ -2,8 +2,8 @@
 name = "pharia-studio-sdk"
 version = "0.1.4"
 description = ""
-authors = [{ name = "Max Hammer", email = "max.hammer@aleph-alpha.com" }]
-requires-python = ">=3.10,<3.13"
+authors = [{ name = "Aleph Alpha Engineering", email = "engineering@aleph-alpha.com" }]
+requires-python = ">=3.12,<3.13"
 readme = "README.md"
 dependencies = [
     "pydantic>=2.11.5",
@@ -31,7 +31,7 @@ test = [
     "pytest>=8.3",
     "pytest-xdist>=3.6.1",
     "pytest-asyncio>=0.26.0",
-    "numpy<=2.3.0",
+    "numpy>=2.3.0",
     "pandas>=2.3.0",
 ]
 dev = [
@@ -58,14 +58,6 @@ dev = [
     "types-simplejson>=3.20.0.20250326",
     "types-tabulate>=0.9.0.20241207",
     "types-tensorflow>=2.18.0.20250516",
-    "types-decorator>=5.1.8.20240310",
-]
-docs = [
-    "sphinx>=7.0.0,<8.0.0",
-    "sphinx-rtd-theme>=3.0.2",
-    "myst-parser>=3.0.0,<4.0.0",
-    "sphinx-design>=0.6.1",
-    "sphinx-copybutton>=0.5.2",
 ]
 
 [tool.uv]
