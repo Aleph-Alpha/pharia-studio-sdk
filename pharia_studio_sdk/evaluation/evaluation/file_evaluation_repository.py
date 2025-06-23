@@ -62,7 +62,11 @@ class FileSystemEvaluationRepository(EvaluationRepository, FileSystemBasedReposi
 
     def example_evaluation(
         self, evaluation_id: str, example_id: str, evaluation_type: type[Evaluation]
-    ) -> ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation] | None:
+    ) -> (
+        ExampleEvaluation[Evaluation]
+        | ExampleEvaluation[FailedExampleEvaluation]
+        | None
+    ):
         file_path = self._example_result_path(evaluation_id, example_id)
         if not self.exists(file_path.parent):
             raise ValueError(

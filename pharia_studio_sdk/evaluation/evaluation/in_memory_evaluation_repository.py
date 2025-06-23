@@ -64,7 +64,11 @@ class InMemoryEvaluationRepository(EvaluationRepository):
 
     def example_evaluation(
         self, evaluation_id: str, example_id: str, evaluation_type: type[Evaluation]
-    ) -> ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation] | None:
+    ) -> (
+        ExampleEvaluation[Evaluation]
+        | ExampleEvaluation[FailedExampleEvaluation]
+        | None
+    ):
         results = self.example_evaluations(evaluation_id, evaluation_type)
         filtered = (result for result in results if result.example_id == example_id)
         return next(filtered, None)

@@ -60,16 +60,16 @@ exclude_patterns: list[str] = []
 
 # Suppress docstring formatting warnings
 suppress_warnings = [
-    'docutils',  # Suppress docstring formatting warnings
+    "docutils",  # Suppress docstring formatting warnings
 ]
 
 # Configure navigation
 html_theme_options = {
-    'navigation_depth': 2,
-    'collapse_navigation': False,
-    'sticky_navigation': True,
-    'includehidden': True,
-    'titles_only': False
+    "navigation_depth": 2,
+    "collapse_navigation": False,
+    "sticky_navigation": True,
+    "includehidden": True,
+    "titles_only": False,
 }
 
 

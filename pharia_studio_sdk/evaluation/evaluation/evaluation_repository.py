@@ -129,7 +129,11 @@ class EvaluationRepository(ABC):
     @abstractmethod
     def example_evaluation(
         self, evaluation_id: str, example_id: str, evaluation_type: type[Evaluation]
-    ) -> ExampleEvaluation[Evaluation] | ExampleEvaluation[FailedExampleEvaluation] | None:
+    ) -> (
+        ExampleEvaluation[Evaluation]
+        | ExampleEvaluation[FailedExampleEvaluation]
+        | None
+    ):
         """Returns an :class:`ExampleEvaluation` for the given evaluation overview ID and example ID.
 
         Args:
