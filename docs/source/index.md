@@ -13,12 +13,13 @@ The Pharia Studio SDK provides a comprehensive set of tools for evaluating and b
 
 ## Getting Started
 
-Ready to start using the Pharia Studio SDK? Check out our [Quick Start Guide](01-quickstart) for installation instructions and basic usage examples.
-
-## Documentation
+- **New to the Pharia Studio SDK?** Start with the {doc}`02-core_concepts` to understand our architecture and key concepts.
+- **Ready to build?** Check out the {doc}`01-quickstart` to get up and running in minutes.
+- **Need detailed API information?** Explore our comprehensive {doc}`references` for all classes and methods.
 
 ```{toctree}
 :maxdepth: 2
+:hidden:
 
 01-quickstart
 02-core_concepts
@@ -29,9 +30,3 @@ references
 
 - **GitHub Repository**: [https://github.com/Aleph-Alpha/pharia-studio-sdk](https://github.com/Aleph-Alpha/pharia-studio-sdk)
 - **PyPI Package**: [https://pypi.org/project/pharia-studio-sdk/](https://pypi.org/project/pharia-studio-sdk/)
-
-## Indices and tables
-
-* {ref}`genindex`
-* {ref}`modindex`
-* {ref}`search`
