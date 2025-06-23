@@ -11,7 +11,7 @@ The evaluation process helps to:
 - Compare the performance of models for a given task implementation.
 - Verify how changes to the environment (such as a new model version or new finetuning version) affect the performance of a task.
 
-### Dataset
+## Dataset
 
 The basis of an evaluation is a set of examples for the specific task-type to be evaluated. A single `Example` consists of:
 
@@ -22,7 +22,7 @@ For example, the expected output might be, in the case of a classification, the 
 
 To enable reproducibility of evaluations, datasets are immutable. A single dataset can be used to evaluate all tasks of the same type, that is, with the same `Input` and `Output` types.
 
-### Evaluation Process
+## Evaluation Process
 
 The Intelligence Layer supports different kinds of evaluation techniques. Most important are:
 
@@ -49,7 +49,7 @@ The columns indicate the following:
 - "Custom Logic" lists abstract classes that need to be implemented with the custom logic.
 - "Repository" lists abstract classes for storing intermediate results. The Intelligence Layer provides different implementations for these. See the next section for details.
 
-### Data Storage
+## Data Storage
 
 During an evaluation process a lot of intermediate data is created before the final aggregated result can be produced. To avoid repeating expensive computations if new results are to be produced based on previous ones, all intermediate results are persisted. To do this, the different executor classes use the following repositories:
 
