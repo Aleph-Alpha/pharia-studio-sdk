@@ -65,7 +65,7 @@ suppress_warnings = [
 
 # Configure navigation
 html_theme_options = {
-    "navigation_depth": 2,
+    "navigation_depth": 3,
     "collapse_navigation": False,
     "sticky_navigation": True,
     "includehidden": True,

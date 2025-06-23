@@ -18,7 +18,7 @@ The Pharia Studio SDK provides a comprehensive set of tools for evaluating and b
 - **Need detailed API information?** Explore our comprehensive {doc}`references` for all classes and methods.
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 3
 :hidden:
 
 01-quickstart
