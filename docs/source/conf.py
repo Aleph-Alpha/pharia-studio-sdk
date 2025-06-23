@@ -9,7 +9,7 @@ from types import FunctionType, MethodType
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Pharia Studio SDK"
-copyright = "2025, Pharia"
+copyright = "2025, Aleph Alpha"
 author = "Aleph Alpha"
 version = importlib.metadata.version("pharia-studio-sdk")
 
