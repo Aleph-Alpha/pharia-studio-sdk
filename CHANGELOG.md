@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.5](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.4...v0.1.5) (2025-06-24)
+
+
+### Documentation
+
+* generate read-the-docs ([#19](https://github.com/Aleph-Alpha/pharia-studio-sdk/issues/19)) ([12cdd37](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/12cdd37ee6395609fe6ff51fd1f1e7f256893d1c))
+* improve quick start page ([#32](https://github.com/Aleph-Alpha/pharia-studio-sdk/issues/32)) ([87fb4ca](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/87fb4ca4d28aa41a98d2ae6dabee69690cc8e789))
+* update read the docs overview ([#28](https://github.com/Aleph-Alpha/pharia-studio-sdk/issues/28)) ([46230b5](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/46230b53cc96561a99d28d1ad137f40b2f2fac62))
+
 ## [0.1.4](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.3...v0.1.4) (2025-06-19)
 
 
