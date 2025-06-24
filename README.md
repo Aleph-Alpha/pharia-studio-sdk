@@ -5,6 +5,7 @@ Formerly the `intelligence_layer/evaluation` package.
 ## Overview
 
 The pharia-studio-sdk provides a set of tools for evaluating and benchmarking LLMs with the Studio applications.
+You can access the documentation on [Read the Docs](https://pharia-studio-sdk.readthedocs.io/en/latest/).
 
 ## Installation
 The SDK is published on [PyPI](https://pypi.org/project/pharia-studio-sdk/).
