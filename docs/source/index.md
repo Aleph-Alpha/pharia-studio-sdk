@@ -2,7 +2,7 @@
 
 Welcome to the Pharia Studio SDK 👋
 
-The Pharia Studio SDK provides a comprehensive set of tools for evaluating and benchmarking Large Language Models (LLMs) with Studio applications. Formerly the `intelligence_layer/evaluation` package.
+The Pharia Studio SDK provides a comprehensive set of tools for evaluating and benchmarking Large Language Models (LLMs). Formerly the `intelligence_layer/evaluation` package.
 
 ## Key Features
 
