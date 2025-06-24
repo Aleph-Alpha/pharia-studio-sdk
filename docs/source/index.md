@@ -19,7 +19,7 @@ The Pharia Studio SDK provides a comprehensive set of tools for evaluating and b
 - **Want to contribute?** See our [Contributing Guide](https://github.com/Aleph-Alpha/pharia-studio-sdk/blob/main/CONTRIBUTING.md) for details on how to set up the development environment and submit changes.
 
 ```{toctree}
-:maxdepth: 3
+:maxdepth: 4
 :hidden:
 
 01-quickstart
