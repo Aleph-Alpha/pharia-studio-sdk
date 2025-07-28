@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.5...v0.1.6) (2025-07-28)
+
+
+### Features
+
+* add parameter max_workers to StudioBenchmark.execute ([ab08c69](https://github.com/Aleph-Alpha/pharia-studio-sdk/commit/ab08c69aee0e597ad0f8737e8946d3282bb01b69))
+
 ## [0.1.5](https://github.com/Aleph-Alpha/pharia-studio-sdk/compare/v0.1.4...v0.1.5) (2025-06-24)
 
 
