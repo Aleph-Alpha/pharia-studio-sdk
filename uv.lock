@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10, <3.13"
 resolution-markers = [
     "python_full_version >= '3.12'",
@@ -2812,11 +2812,11 @@ wheels = [
 
 [[package]]
 name = "types-defusedxml"
-version = "0.7.0.20250516"
+version = "0.7.0.20250809"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/55/9d/3ba8b80536402f1a125bc5a44d82ab686aafa55a85f56160e076b2ac30de/types_defusedxml-0.7.0.20250516.tar.gz", hash = "sha256:164c2945077fa450f24ed09633f8b3a80694687fefbbc1cba5f24e4ba570666b", size = 10298, upload-time = "2025-05-16T03:08:18.951Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b5/d3/850246b2549c9c02e333f578537ef72e91eb0963377546004bfda7d277d6/types_defusedxml-0.7.0.20250809.tar.gz", hash = "sha256:4c6d2eb3a6fe3bee16737c1470f0407f166621214d1cd641e8a25979fe9f14b5", size = 10486, upload-time = "2025-08-09T03:15:29.227Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2e/7b/567b0978150edccf7fa3aa8f2566ea9c3ffc9481ce7d64428166934d6d7f/types_defusedxml-0.7.0.20250516-py3-none-any.whl", hash = "sha256:00e793e5c385c3e142d7c2acc3b4ccea2fe0828cee11e35501f0ba40386630a0", size = 12576, upload-time = "2025-05-16T03:08:17.892Z" },
+    { url = "https://files.pythonhosted.org/packages/0b/13/f9f6ffb6b6de07247107c1abd81faf880c79ab43e98b16a9db9db7b36b5e/types_defusedxml-0.7.0.20250809-py3-none-any.whl", hash = "sha256:ce64758390fb2b6fc3ccb594787b278ff361a0ecc18539d363dae1a4f46e7176", size = 13433, upload-time = "2025-08-09T03:15:28.438Z" },
 ]
 
 [[package]]
