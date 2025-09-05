@@ -2,7 +2,7 @@ import itertools
 from collections.abc import Sequence
 from datetime import datetime, timezone
 from http import HTTPStatus
-from typing import Any
+from typing import Any, Sequence
 
 import requests
 from pharia_inference_sdk.core import Input, Output
@@ -50,10 +50,10 @@ from pharia_studio_sdk.evaluation.evaluation.in_memory_evaluation_repository imp
 from pharia_studio_sdk.evaluation.infrastructure.repository_navigator import (
     EvaluationLineage,
 )
-from pharia_studio_sdk.evaluation.run.in_memory_run_repository import (
-    InMemoryRunRepository,
-)
+from pharia_studio_sdk.evaluation.run.in_memory_run_repository import InMemoryRunRepository
 from pharia_studio_sdk.evaluation.run.runner import Runner
+from pharia_studio_sdk.evaluation.run.studio_run_repository import StudioRunRepository
+from pharia_studio_sdk.studio_tracer import StudioTracer
 
 
 class StudioBenchmark(Benchmark):
@@ -73,6 +73,7 @@ class StudioBenchmark(Benchmark):
         self.eval_logic = eval_logic
         self.aggregation_logic = aggregation_logic
         self.client = studio_client
+        self.tracer = StudioTracer(self.client)
         self.run_repository = InMemoryRunRepository()
         self.evaluation_repository = InMemoryEvaluationRepository()
         self.aggregation_repository = InMemoryAggregationRepository()
@@ -108,12 +109,15 @@ class StudioBenchmark(Benchmark):
             self.run_repository,
             f"benchmark-{self.id}-runner",
         )
+
         run_overview = runner.run_dataset(
             self.dataset_id,
             description=description,
             labels=labels,
             metadata=metadata,
             max_workers=max_workers,
+            tracer=self.tracer,
+            trace_examples_individually=False
         )
 
         evaluation_overview = self.evaluator.evaluate_runs(
@@ -178,18 +182,18 @@ class StudioBenchmark(Benchmark):
             benchmark_id=self.id, data=benchmark_execution_data
         )
 
-        trace_ids = []
-        for trace in tqdm(run_traces, desc="Submitting traces to Studio"):
-            trace_id = self.client.submit_trace(trace)
-            trace_ids.append(trace_id)
-
-        benchmark_lineages = self._create_benchmark_lineages(
+        # TODO: How can we get the hex trace id instead of the UUID from the trace?
+        trace_ids = [trace[0].context.trace_id.bytes.hex() for trace in run_traces]
+        # trace_ids = []
+        # for trace in tqdm(run_traces, desc="Submitting traces to Studio"):
+        #     trace_id = self.client.submit_trace(trace)
+        #     trace_ids.append(trace_id)
+        benchmark_lineages: Sequence[BenchmarkLineage[Input, ExpectedOutput, Output, Evaluation]] = self._create_benchmark_lineages(
             eval_lineages=evaluation_lineages,
             trace_ids=trace_ids,
             latencies_per_trace=latency_per_trace,
             tokens_per_trace=tokens_per_trace,
         )
-
         self.client.submit_benchmark_lineages(
             benchmark_lineages=benchmark_lineages,
             execution_id=benchmark_execution_id,

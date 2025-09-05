@@ -337,11 +337,13 @@ def test_execute_benchmark_on_empty_examples_uploads_example_and_calculates_corr
     assert mock_submit_trace.call_count == 0
 
 
+@patch("pharia_studio_sdk.evaluation.run.studio_run_repository.StudioTracer")
 @patch(
     "pharia_studio_sdk.evaluation.benchmark.studio_benchmark.extract_token_count_from_trace"
 )
 def test_execute_benchmark_failing_examples_calculates_correctly(
     mock_extract_tokens: Mock,
+    mock_studio_tracer: Mock,
     studio_benchmark_repository: StudioBenchmarkRepository,
     mock_studio_client: StudioClient,
     evaluation_logic: DummyEvaluationLogic,
