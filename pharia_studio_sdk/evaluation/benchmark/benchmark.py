@@ -30,15 +30,6 @@ class Benchmark(ABC):
         aggregation_logic: AggregationLogic[Evaluation, AggregatedEvaluation],
         **kwargs: Any,
     ) -> None:
-        """Initializes a Benchmark instance.
-
-        Args:
-            benchmark_id: Unique identifier for the benchmark.
-            dataset_id: Identifier for the dataset associated with the benchmark.
-            eval_logic: The evaluation logic to be applied.
-            aggregation_logic: The aggregation logic to combine individual evaluations.
-            **kwargs: Additional keyword arguments for extended configurations.
-        """
         pass
 
     @abstractmethod
@@ -49,6 +40,7 @@ class Benchmark(ABC):
         description: str | None,
         labels: set[str] | None,
         metadata: dict[str, Any] | None,
+        max_workers: int = 10,
     ) -> str:
         """Executes the benchmark on a given task.
 
@@ -58,6 +50,7 @@ class Benchmark(ABC):
             description: Description of the task to be evaluated.
             labels: Labels for filtering or categorizing the benchmark.
             metadata: Additional information about the task for logging or configuration.
+            max_workers: Maximum number of concurrent workers to use for the benchmark execution.
 
         Returns:
             Identifier of the benchmark run.
