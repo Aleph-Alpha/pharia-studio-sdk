@@ -11,7 +11,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41
       - name: Set up Python
@@ -54,7 +54,7 @@ jobs:
           POSTGRES_USER: "il_sdk"
           POSTGRES_PASSWORD: "test"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41
       - name: Set up Python
