@@ -171,7 +171,7 @@ class StudioBenchmark(Benchmark):
             eval_failed_count=evaluation_overview.failed_evaluation_count,
             aggregation_start=aggregation_overview.start,
             aggregation_end=aggregation_overview.end,
-            statistics=aggregation_overview.statistics.model_dump_json(),
+            statistics=aggregation_overview.statistics.model_dump(),
         )
 
         benchmark_execution_id = self.client.submit_benchmark_execution(
